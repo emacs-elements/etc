@@ -23,15 +23,17 @@
 
   # Mount External Drives
   
-  # fileSystems."/home/tan/WDBLACK" = {
-  #   device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4"; # replace with actual file system type, e.g., ext4, ntfs
-  # };
+  fileSystems."/home/tan/WDBLACK" = {
+    device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
+    fsType = "ext4"; # replace with actual file system type, e.g., ext4, ntfs
+  };
 
-  # fileSystems."/home/tan/SSD" = {
-  #   device = "/dev/disk/by-uuid/e20cde3c-b800-42a5-bfc6-700fb6af4298";
-  #   fsType = "btrfs"; # replace with actual file system type
-  # };
+  fileSystems."/home/tan/SSD" = {
+    device = "/dev/disk/by-uuid/e20cde3c-b800-42a5-bfc6-700fb6af4298";
+    fsType = "btrfs"; # replace with actual file system type
+  };
+
+  # services.udisks2.enable = true;
 
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
@@ -55,17 +57,7 @@
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "tan";
 
-  # fileSystems."/home/tan/SSD" = {
-  #   device = "/dev/nvme0n1p1";
-  #   fsType = "btrfs"; # replace with actual file system type
-  # };
-  
-  # fileSystems."/home/tan/WDBLACK" = {
-  #   device = "/dev/sda1";
-  #   fsType = "ext4"; # replace with actual file system type, e.g., ext4, ntfs
-  # };
-
-  # services.udisks2.enable = true;
+  # Rename my hard drives
   
   # Configure keymap in X11
   services.xserver = {
@@ -74,11 +66,7 @@
   };
 
 # Installing flatpak
-  # services.flatpak.enable = true;
-
-  # Enable app images
-  # boot.kernelModules = [ "fuse" ];
-  # security.wrappers.fusermount.source = "${pkgs.fuse}/bin/fusermount";
+  services.flatpak.enable = true;
 
 # Enabling docker service
   virtualisation.docker.enable = true;
@@ -144,14 +132,12 @@
     tesseract
     xclip
     libnotify
-    # gnome.gnome-disk-utility
+    gnome.gnome-disk-utility
     distrobox
     docker
     fontconfig
     clipgrab
     fdupes
-    qbittorrent
-    kdenlive
   # openai-whisper
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
