@@ -142,8 +142,8 @@
 # '';
 
 nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1w"
-              ];
+  "openssl-1.1.1w"
+];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
