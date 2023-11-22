@@ -38,6 +38,13 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # Logon automatically
+
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "tan";
+
+  # Rename my hard drives
+  
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -124,7 +131,7 @@
   ];
 
   security.sudo.wheelNeedsPassword = false;
-  
+
 # security.sudo.configFile = ''
 #   Defaults env_reset
 #   root ALL=(ALL:ALL) ALL
