@@ -74,8 +74,13 @@
     xkbVariant = "";
   };
 
-# Installing flatpak
-  # services.flatpak.enable = true;
+  # Installing flatpak
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+  services.flatpak.enable = true;
 
   # Enable app images
   # boot.kernelModules = [ "fuse" ];
@@ -159,7 +164,6 @@
     fontconfig
     clipgrab
     fdupes
-    kdenlive
     xournalpp
     libreoffice-fresh
     xfce.xfce4-pulseaudio-plugin
@@ -173,6 +177,7 @@
     unzip
     rar
     microcodeIntel
+    xdg-desktop-portal-gtk
   # openai-whisper
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
