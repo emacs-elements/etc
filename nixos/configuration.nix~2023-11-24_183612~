@@ -181,12 +181,13 @@
   security.sudo.wheelNeedsPassword = false;
 
   fonts.fonts = with pkgs; [
-  corefonts
-  hack-font
-  jetbrains-mono
-  unifont
-  dejavu_fonts
-  ubuntu_font_family
+    corefonts
+    noto-fonts
+    hack-font
+    jetbrains-mono
+    unifont
+    dejavu_fonts
+    ubuntu_font_family
   ];
 
   # Firewall enable
