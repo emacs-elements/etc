@@ -22,16 +22,28 @@
   networking.networkmanager.enable = true;
 
   # Mount External Drives
+
+  # Supported file types
   
-  # fileSystems."/home/tan/WDBLACK" = {
+  # boot.supportedFilesystems = [ "ext4" "vfat" ];
+  # boot.initrd.supportedFilesystems = [ "ext4" "vfat" ];
+
+  # fileSystems."/mnt/wdblack" = {
   #   device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4"; # replace with actual file system type, e.g., ext4, ntfs
+  #   fsType = "ext4";
+  #   options = [ "defaults" ];
+  # };
+  
+  # fileSystems."/mnt/wdblack" = {
+  #   device = "/dev/sda1";
+  #   fsType = "ext4"; # Use the actual filesystem type of /dev/sda1, replace if it's not ext4
+  #   options = [ "defaults" ]; # Add necessary mount options, 'defaults' is a placeholder
+  #   # Add any other required options or attributes if needed
   # };
 
-  # fileSystems."/home/tan/SSD" = {
-  #   device = "/dev/disk/by-uuid/e20cde3c-b800-42a5-bfc6-700fb6af4298";
-  #   fsType = "btrfs"; # replace with actual file system type
-  # };
+  # services.devmon.enable = true;
+  # services.gvfs.enable = true;
+  # services.udisks2.enable = true;
 
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
@@ -47,26 +59,15 @@
   # services.emacs.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
 
   # Logon automatically
 
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "tan";
 
-  # fileSystems."/home/tan/SSD" = {
-  #   device = "/dev/nvme0n1p1";
-  #   fsType = "btrfs"; # replace with actual file system type
-  # };
-  
-  # fileSystems."/home/tan/WDBLACK" = {
-  #   device = "/dev/sda1";
-  #   fsType = "ext4"; # replace with actual file system type, e.g., ext4, ntfs
-  # };
-
-  # services.udisks2.enable = true;
-  
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -112,9 +113,8 @@
   users.users.tan = {
     isNormalUser = true;
     description = "Raoul Comninos";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers"];
     packages = with pkgs; [
-      firefox
       kate
     #  thunderbird
     ];
@@ -123,10 +123,19 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Install Virtualbox
+
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "tan" ];
+   virtualisation.virtualbox.host.enableExtensionPack = true;
+   virtualisation.virtualbox.guest.enable = true;
+   virtualisation.virtualbox.guest.x11 = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # emacs29-gtk3
+    google-chrome
     hunspell
     hunspellDicts.en-us
     wget
@@ -137,6 +146,7 @@
     espeak-classic
     vim
     obs-studio
+    simplescreenrecorder
     mpv
     audacity
     sublime4
@@ -144,14 +154,23 @@
     tesseract
     xclip
     libnotify
-    # gnome.gnome-disk-utility
-    distrobox
-    docker
+    gnome.gnome-disk-utility
+    gparted
     fontconfig
     clipgrab
     fdupes
-    qbittorrent
     kdenlive
+    xournalpp
+    libreoffice-fresh
+    xfce.xfce4-pulseaudio-plugin
+    hack-font
+    jetbrains-mono
+    unifont
+    gwenview
+    okular
+    jre_minimal
+    firefox-esr
+    terminator
   # openai-whisper
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
