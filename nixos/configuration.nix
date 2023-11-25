@@ -59,14 +59,16 @@
   # services.emacs.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Logon automatically
 
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "tan";
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "tan";
 
   # Configure keymap in X11
   services.xserver = {
@@ -76,10 +78,10 @@
 
   # Installing flatpak
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  # };
   services.flatpak.enable = true;
 
   # Enable app images
@@ -120,7 +122,7 @@
     description = "Raoul Comninos";
     extraGroups = [ "networkmanager" "wheel" "docker" "vboxusers"];
     packages = with pkgs; [
-      kate
+      # kate
     #  thunderbird
     ];
   };
@@ -150,7 +152,6 @@
     rlwrap
     espeak-classic
     vim
-    obs-studio
     simplescreenrecorder
     mpv
     audacity
@@ -177,7 +178,11 @@
     unzip
     rar
     microcodeIntel
-    xdg-desktop-portal-gtk
+    # xdg-desktop-portal-gtk
+    # etcher
+    appimage-run
+    vlc
+    ntfs3g
   # openai-whisper
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
@@ -196,8 +201,19 @@
 
   # Firewall enable
   
-  networking.firewall.enable = true;
+  # networking.firewall.enable = true;
 
+  # Allow APP images
+
+  # boot.binfmt.registrations.appimage = {
+  #   wrapInterpreterInShell = false;
+  #   interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+  #   recognitionType = "magic";
+  #   offset = 0;
+  #   mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+  #   magicOrExtension = ''\x7fELF....AI\x02'';
+  # };
+  
   # Intel
 
   hardware.cpu.intel.updateMicrocode = true;
