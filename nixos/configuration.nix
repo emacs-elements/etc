@@ -152,7 +152,6 @@
     rlwrap
     espeak-classic
     vim
-    simplescreenrecorder
     mpv
     audacity
     sublime4
