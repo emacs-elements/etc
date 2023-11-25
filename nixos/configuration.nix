@@ -168,16 +168,15 @@
     xournalpp
     libreoffice-fresh
     xfce.xfce4-pulseaudio-plugin
-    gwenview
     okular
     jre_minimal
     firefox-esr
-    terminator
     imagemagick
     neovim
     unzip
     rar
     microcodeIntel
+    k3b
     # xdg-desktop-portal-gtk
     # etcher
     appimage-run
@@ -201,7 +200,7 @@
 
   # Firewall enable
   
-  # networking.firewall.enable = true;
+  networking.firewall.enable = true;
 
   # Allow APP images
 
