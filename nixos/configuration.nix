@@ -179,12 +179,14 @@
     # xdg-desktop-portal-gtk
     # etcher
     appimage-run
-    vlc
     ntfs3g
-  # openai-whisper
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
+    gnome.gnome-tweaks
+    gnome.dconf-editor
+    # pkgs.gnomeExtensions.dash-to-panel
+    distrobox
+    # gnomeExtensions.clipboard-indicator-2
+    # gnome-shell-extension-gtk4-desktop-icons-ng-ding
+    ];
 
   security.sudo.wheelNeedsPassword = false;
 
