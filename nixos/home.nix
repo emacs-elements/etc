@@ -62,55 +62,56 @@
   #
   #  /etc/profiles/per-user/tan/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
+  
+  # home.sessionVariables = {
+  #   # EDITOR = "emacs";
+  # };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs29-gtk3;  # Use the desired Emacs package
+  # programs.emacs = {
+  #   enable = true;
+  #   # package = pkgs.emacs29-gtk3;  # Use the desired Emacs package
 
-    extraConfig = ''
-      (setq standard-indent 2)
+  #   extraConfig = ''
+  #     (setq standard-indent 2)
 
-      ;; Disable startup screen
-      (setq inhibit-startup-screen t)
+  #     ;; Disable startup screen
+  #     (setq inhibit-startup-screen t)
 
-      ;; Set initial scratch message to empty
-      (setq initial-scratch-message "")
+  #     ;; Set initial scratch message to empty
+  #     (setq initial-scratch-message "")
 
-      ;; Set up MELPA package repository
-      (require 'package)
-      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-      (package-initialize)
-      (setq package-check-signature nil)
+  #     ;; Set up MELPA package repository
+  #     (require 'package)
+  #     (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  #     (package-initialize)
+  #     (setq package-check-signature nil)
 
-      (setq bookmark-default-file "~/.emacs.d/bookmarks")  ; Set the bookmark file
-      (setq bookmark-save-flag 1)                         ; Save bookmarks after every change
+  #     (setq bookmark-default-file "~/.emacs.d/bookmarks")  ; Set the bookmark file
+  #     (setq bookmark-save-flag 1)                         ; Save bookmarks after every change
 
-      ;; Basic modes
-      (tool-bar-mode -1)
-      (menu-bar-mode -1)
-      (scroll-bar-mode -1)
-      (blink-cursor-mode -1)
-      (column-number-mode +1)
-      (global-visual-line-mode +1)
-      (delete-selection-mode +1)
-      (save-place-mode +1)
-      (display-time-mode 1)
-      (winner-mode 1)
-      (global-goto-address-mode 1)
-      (savehist-mode 1)
-      (repeat-mode 1)
-      (context-menu-mode 1)
-      (recentf-mode 1)
-    '';
+  #     ;; Basic modes
+  #     (tool-bar-mode -1)
+  #     (menu-bar-mode -1)
+  #     (scroll-bar-mode -1)
+  #     (blink-cursor-mode -1)
+  #     (column-number-mode +1)
+  #     (global-visual-line-mode +1)
+  #     (delete-selection-mode +1)
+  #     (save-place-mode +1)
+  #     (display-time-mode 1)
+  #     (winner-mode 1)
+  #     (global-goto-address-mode 1)
+  #     (savehist-mode 1)
+  #     (repeat-mode 1)
+  #     (context-menu-mode 1)
+  #     (recentf-mode 1)
+  #   '';
 
-    # Specify additional Emacs packages
-    extraPackages = epkgs: [
-      # List additional packages here, e.g., (epkgs.melpaStablePackages.use-package)
-    ];
-  };
+  #   # Specify additional Emacs packages
+  #   extraPackages = epkgs: [
+  #     # List additional packages here, e.g., (epkgs.melpaStablePackages.use-package)
+  #   ];
+  # };
   
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

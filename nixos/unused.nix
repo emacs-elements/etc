@@ -20,41 +20,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Mount External Drives
-
-  # Supported file types
-  
-  # boot.supportedFilesystems = [ "ext4" "vfat" ];
-  # boot.initrd.supportedFilesystems = [ "ext4" "vfat" ];
-
-  # fileSystems."/data" =
-  # { device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4";
-  # };
-
-  # fileSystems."/boot" =
-  # { device = "/dev/disk/by-uuid/AF9C-DF7D";
-  #   fsType = "vfat";
-  #   options = [ "rw" "data=ordered" "relatime" ];
-  # };
-
-  # fileSystems."/mnt/wdblack" = {
-  #   device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4";
-  #   options = [ "defaults" ];
-  # };
-  
-  # fileSystems."/mnt/wdblack" = {
-  #   device = "/dev/sda1";
-  #   fsType = "ext4"; # Use the actual filesystem type of /dev/sda1, replace if it's not ext4
-  #   options = [ "defaults" ]; # Add necessary mount options, 'defaults' is a placeholder
-  #   # Add any other required options or attributes if needed
-  # };
-
-  # services.devmon.enable = true;
-  # services.gvfs.enable = true;
-  # services.udisks2.enable = true;
-
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
 
@@ -72,10 +37,9 @@
   # services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
+
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.games.enable = false;
-  services.gnome.core-developer-tools.enable = true;
 
   # Logon automatically
 
@@ -175,7 +139,6 @@ services.printing.drivers = [ pkgs.brlaser ];
     # gnomeExtensions.clipboard-indicator-2
     # pkgs.gnomeExtensions.dash-to-panel
     # xdg-desktop-portal-gtk
-    # (import /home/tan/emacs.nix { inherit pkgs; })    
     appimage-run
     autoPatchelfHook
     brlaser
@@ -183,13 +146,13 @@ services.printing.drivers = [ pkgs.brlaser ];
     clipgrab
     distrobox
     ed
+    emacs29-gtk3
     espeak-classic
     fdupes
-    ffmpeg_6
+    ffmpeg_6-full
     firefox-esr
     flameshot
     fontconfig
-    libgccjit
     git
     gnome.dconf-editor
     gnome.gnome-disk-utility
@@ -236,10 +199,6 @@ services.printing.drivers = [ pkgs.brlaser ];
   ubuntu_font_family
   unifont
   ];
-
-  # services.emacs.enable = true;
-  # services.emacs.package = import /home/tan/emacs.nix { pkgs = pkgs; };
-  # services.emacs.defaultEditor = true;
 
   # Firewall enable
   
