@@ -211,6 +211,7 @@ services.printing.drivers = [ pkgs.brlaser ];
     okular
     openssh
     rar
+    ripgrep
     rlwrap
     rustc
     sublime4
