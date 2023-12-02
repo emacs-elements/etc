@@ -20,40 +20,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Mount External Drives
-
-  # Supported file types
-  
-  # boot.supportedFilesystems = [ "ext4" "vfat" ];
-  # boot.initrd.supportedFilesystems = [ "ext4" "vfat" ];
+  # Mount Internal Drives
 
   # fileSystems."/data" =
   # { device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4";
+  # fsType = "ext4";
   # };
-
-  # fileSystems."/boot" =
-  # { device = "/dev/disk/by-uuid/AF9C-DF7D";
-  #   fsType = "vfat";
-  #   options = [ "rw" "data=ordered" "relatime" ];
-  # };
-
-  # fileSystems."/mnt/wdblack" = {
-  #   device = "/dev/disk/by-uuid/d2a55801-08e9-4bad-b905-4c83d7e76ad0";
-  #   fsType = "ext4";
-  #   options = [ "defaults" ];
-  # };
-  
-  # fileSystems."/mnt/wdblack" = {
-  #   device = "/dev/sda1";
-  #   fsType = "ext4"; # Use the actual filesystem type of /dev/sda1, replace if it's not ext4
-  #   options = [ "defaults" ]; # Add necessary mount options, 'defaults' is a placeholder
-  #   # Add any other required options or attributes if needed
-  # };
-
-  # services.devmon.enable = true;
-  # services.gvfs.enable = true;
-  # services.udisks2.enable = true;
 
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
@@ -64,14 +36,20 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable emacsclient as default editor
-  # services.emacs.defaultEditor = true;
-  # services.emacs.enable = true;
-
   # Enable the KDE Plasma Desktop Environment.
   # services.xserver.desktopManager.xfce.enable = true;
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
+
+  # Cinnamon
+
+  # services.xserver.desktopManager.cinnamon.enable = true;
+  # services.xserver.displayManager.lightdm.enable = true;
+  # services.xserver.libinput.enable = true;
+  # services.xserver.displayManager.defaultSession = "cinnamon";
+  
+  # Gnome
+  
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.games.enable = false;
@@ -107,20 +85,6 @@
   services.openssh.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-#   hardware.printers = {
-#   ensurePrinters = [
-#     {
-#       name = "Brother_HL_L2360D_series";
-#       location = "Home";
-#       deviceUri = "usb://Dell/1250c%20Color%20Printer?serial=YNP023240";
-#       model = "Dell-1250c.ppd.gz";
-#       ppdOptions = {
-#         PageSize = "A4";
-#       };
-#     }
-#   ];
-# };
 
 services.printing.drivers = [ pkgs.brlaser ];
 
@@ -183,19 +147,27 @@ services.printing.drivers = [ pkgs.brlaser ];
     clipgrab
     distrobox
     ed
+    e2fsprogs 
+    emacs29-gtk3
     espeak-classic
+    etcher
     fdupes
-    ffmpeg_6
+    filezilla
+    ffmpeg
     firefox-esr
     flameshot
     fontconfig
     libgccjit
+    gcc
     git
     gnome.dconf-editor
     gnome.gnome-disk-utility
     gnome.gnome-tweaks
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.dock-reloaded
     google-chrome
     gparted
+    gthumb 
     hunspell
     hunspellDicts.en-us
     imagemagick
@@ -209,26 +181,33 @@ services.printing.drivers = [ pkgs.brlaser ];
     neovim
     ntfs3g
     okular
+    openai-whisper
+    openai-whisper-cpp
     openssh
+    pandoc
+    python311Packages.pip
     rar
     ripgrep
     rlwrap
     rustc
     sublime4
+    system-config-printer
     tesseract
     unzip
     vim
     vscode
     wget
-    openai-whisper
     xclip
     xfce.xfce4-pulseaudio-plugin
     xournalpp
+    xdg-desktop-portal-gtk
+    xsel 
+    zile 
     ];
 
   security.sudo.wheelNeedsPassword = false;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
   corefonts
   dejavu_fonts
   hack-font
@@ -238,13 +217,13 @@ services.printing.drivers = [ pkgs.brlaser ];
   unifont
   ];
 
-  # services.emacs.enable = true;
-  # services.emacs.package = import /home/tan/emacs.nix { pkgs = pkgs; };
-  # services.emacs.defaultEditor = true;
-
   # Firewall enable
   
   networking.firewall.enable = true;
+
+  # Enable Flakes
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow appimages
 
@@ -261,19 +240,13 @@ services.printing.drivers = [ pkgs.brlaser ];
 
   hardware.cpu.intel.updateMicrocode = true;
   
-# security.sudo.configFile = ''
-#   Defaults env_reset
-#   root ALL=(ALL:ALL) ALL
-#   %wheel ALL=(ALL) ALL
-
-#   # Your custom rule
-#   tan ALL=(ALL) NOPASSWD: ALL
-# '';
-
+  # Insecure Packages
+  
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
     "4kvideodownloader"
     "masterpdfeditor"
+    "electron-19.1.9"
   ];
 
   # Automatic Updates
