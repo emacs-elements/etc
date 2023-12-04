@@ -158,6 +158,7 @@ services.printing.drivers = [ pkgs.brlaser ];
     flameshot
     fontconfig
     libgccjit
+    libreoffice-fresh
     gcc
     git
     gnome.dconf-editor
@@ -167,12 +168,14 @@ services.printing.drivers = [ pkgs.brlaser ];
     gnomeExtensions.dock-reloaded
     google-chrome
     gparted
-    gthumb 
+    gthumb
+    gwenview
     hunspell
     hunspellDicts.en-us
     imagemagick
     jre_minimal
     k3b
+    kdenlive
     killall
     libnotify
     masterpdfeditor
@@ -190,11 +193,13 @@ services.printing.drivers = [ pkgs.brlaser ];
     ripgrep
     rlwrap
     rustc
+    simplescreenrecorder
     sublime4
     system-config-printer
     tesseract
     unzip
     vim
+    vlc
     vscode
     wget
     xclip
@@ -225,17 +230,6 @@ services.printing.drivers = [ pkgs.brlaser ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Allow appimages
-
-  # boot.binfmt.registrations.appimage = {
-  #   wrapInterpreterInShell = false;
-  #   interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-  #   recognitionType = "magic";
-  #   offset = 0;
-  #   mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-  #   magicOrExtension = ''\x7fELF....AI\x02'';
-  # };
-  
   # Intel
 
   hardware.cpu.intel.updateMicrocode = true;
