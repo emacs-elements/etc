@@ -86,7 +86,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-services.printing.drivers = [ pkgs.brlaser ];
+# services.printing.drivers = [ pkgs.brlaser ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -142,7 +142,6 @@ services.printing.drivers = [ pkgs.brlaser ];
     # (import /home/tan/emacs.nix { inherit pkgs; })    
     appimage-run
     autoPatchelfHook
-    brlaser
     cargo
     clipgrab
     distrobox
